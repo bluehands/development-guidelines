@@ -40,6 +40,14 @@ Unittest sollen in Form von Given/When/Then geschrieben werden. [Siehe auch Mart
 
 tbd für weitere Erklärungen und Beispiele.
 
+### Commit Messages ###
+
+Commit Messages sollen dem Benutzer eine Geschichte erzählen. Ein Why, What & How. 
+Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Injection in XXX nicht mehr möglich, da der Strings jetzt escapt werden*.
+
+[Siehe auch Ilker Cetinkayas Vortrag auf der NRWConf.](https://www.google.de/search?q=Commitmessages+ilker&ie=&oe=#q=Commit+Messages+ilker+Cetinkaya)
+ 
+
 ### Coding-Style ###
 
 Naming Conventions und Coding Styles werden als eine Resharper-Datei zur Verfügung gestellt.
