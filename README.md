@@ -16,6 +16,32 @@ Ein Projekt besteht mehr aus nur Quellcode. Um ein Projekt zu strukturieren, ver
 
 Siehe: ".\Project Folder Template\Project Template.zip"
 
+### Application Lifecycle Management (ALM) ###
+
+#### Plattform ####
+
+Als ALM Plattform benutzen wir Visual Studio Team Services (aka TFS online) um unsere Projekte zu verwalten. Als Projekttemplate wird **bluehands Scrum** und als Quellcodeverwaltungssystem **Git** verwendet. 
+
+Im VSTS werden folgende Themen verwaltet:
+* Quellcodeverwaltung
+* Backlog und alle Scrum-Artefakte wie Sprints usw.
+* Das Build-Management inklusive continues integration
+* Das Release-Management inklusive continues deployment
+* Private projekt spezifische NuGet-Feeds
+* Bluehands allgemeine NuGet-Feeds 
+
+Jedes Projekt hat ein continues integration und wenn möglich ein continues deployment konfiguriert. Alle Artefakte die zum Kunden gehen, werden über das Build-Management erstellt und nicht händisch in Visual Studio. Um Artefakte downloadbar zu machen, kann ein *Publish Artifact* Task verwendet werden.
+
+#### Versionierung ####
+
+Jedes Artefakt hat eine Version, die direkt der Quellcodeverwaltung zugeordnet werden kann. So hat z.B. eine Dll eine Version, die den commit-hash im git enthält. Falls es zu einem Problem bei der Software gibt, kann genau diese Version abgerufen und analysiert werden.
+*tbd: Verweis auf NuGet-Packet*
+
+#### Branching ####
+
+Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
+
+
 ### Unittests und Integrationstests ###
 
 Wir führen Unittests meistens aus folgenden Beweggründen durch:
