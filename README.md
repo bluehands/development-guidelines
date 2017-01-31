@@ -35,7 +35,18 @@ Jedes Projekt hat ein continues integration und wenn möglich ein continues depl
 #### Versionierung ####
 
 Jedes Artefakt hat eine Version, die direkt der Quellcodeverwaltung zugeordnet werden kann. So hat z.B. eine Dll eine Version, die den commit-hash im git enthält. Falls es zu einem Problem bei der Software gibt, kann genau diese Version abgerufen und analysiert werden.
-*tbd: Verweis auf NuGet-Packet*
+
+Mit dem Bluehands.Versioning-Package wird die Versionierung automatisch bei jedem Build umgesetzt. Dazu muss ein neuer Nuget-Feed in Visual Studio hinzugefügt werden:
+
+1. Tools > NuGet Package Manager > Package Manager Settings
+2. Im neuen Fenster links "Package Sources" auswählen
+3. Oben rechts auf das Plus-Symbol (+) klicken
+4. Unten folgendes eingeben:
+    1. Name: `Bluehands`
+    2. Source: `https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json`
+5. Auf "Update" und dann "OK" klicken
+
+Danach ganz normal das Bluehands.Versioning-Package installieren. Dabei muss im Nuget-Fenster oben rechts bei "Package Source" entweder "All" oder "Bluehands" ausgewählt sein. Alle weiteren Informationen finden sich dann in Version.README.txt im Projektordner.
 
 #### Branching ####
 
