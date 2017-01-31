@@ -1,18 +1,18 @@
 # bluehands development guidelines
 
-Hier sind allgemeine Leitfäden und Vorgehensweise zur Softwareentwicklung bei [bluehands](http://www.bluehands.de) zusammengetragen. Sie dienen dazu klarheit zu schafen, wie wir Software erstellen. Unsere Softwareprojekte spiegeln immer diese Guidelines wieder. Anpassungen und Weiterentwicklungen in den Projekten führen zu Anpassungen in diesem Dokument.
+Hier sind allgemeine LeitfÃ¤den und Vorgehensweise zur Softwareentwicklung bei [bluehands](http://www.bluehands.de) zusammengetragen. Sie dienen dazu klarheit zu schafen, wie wir Software erstellen. Unsere Softwareprojekte spiegeln immer diese Guidelines wieder. Anpassungen und Weiterentwicklungen in den Projekten fÃ¼hren zu Anpassungen in diesem Dokument.
 
->Dogmen sind wie Straßenlaternen. Sie weisen in der Nacht den Irrenden den Weg. Aber nur Betrunkene halten sich daran fest.
+>Dogmen sind wie StraÃŸenlaternen. Sie weisen in der Nacht den Irrenden den Weg. Aber nur Betrunkene halten sich daran fest.
 >
 >Karl Rahner
 
 ### Clean Code ###
 
-Unser Ziel ist es hochwertige, evolvierbare Software basierend auf moderne Software-Engineering Praktiken zu erstellen. Die Hinweise der [Clean Code Developer Initiative](http://clean-code-developer.de/) sind einzuhalten. Es ist mindestens der Grüne-Grad anzustreben. 
+Unser Ziel ist es hochwertige, evolvierbare Software basierend auf moderne Software-Engineering Praktiken zu erstellen. Die Hinweise der [Clean Code Developer Initiative](http://clean-code-developer.de/) sind einzuhalten. Es ist mindestens der GrÃ¼ne-Grad anzustreben. 
 
 ### Projektstruktur ###
 
-Ein Projekt besteht mehr aus nur Quellcode. Um ein Projekt zu strukturieren, verwenden wir folgende Ordnerstruktur, welches als ZIP-Datei zur Verfügung steht.
+Ein Projekt besteht mehr aus nur Quellcode. Um ein Projekt zu strukturieren, verwenden wir folgende Ordnerstruktur, welches als ZIP-Datei zur VerfÃ¼gung steht.
 
 Siehe: ".\Project Folder Template\Project Template.zip"
 
@@ -30,53 +30,53 @@ Im VSTS werden folgende Themen verwaltet:
 * Private projekt spezifische NuGet-Feeds
 * Bluehands allgemeine NuGet-Feeds 
 
-Jedes Projekt hat ein continues integration und wenn möglich ein continues deployment konfiguriert. Alle Artefakte die zum Kunden gehen, werden über das Build-Management erstellt und nicht händisch in Visual Studio. Um Artefakte downloadbar zu machen, kann ein *Publish Artifact* Task verwendet werden.
+Jedes Projekt hat ein continues integration und wenn mÃ¶glich ein continues deployment konfiguriert. Alle Artefakte die zum Kunden gehen, werden Ã¼ber das Build-Management erstellt und nicht hÃ¤ndisch in Visual Studio. Um Artefakte downloadbar zu machen, kann ein *Publish Artifact* Task verwendet werden.
 
 #### Versionierung ####
 
-Jedes Artefakt hat eine Version, die direkt der Quellcodeverwaltung zugeordnet werden kann. So hat z.B. eine Dll eine Version, die den commit-hash im git enthält. Falls es zu einem Problem bei der Software gibt, kann genau diese Version abgerufen und analysiert werden.
+Jedes Artefakt hat eine Version, die direkt der Quellcodeverwaltung zugeordnet werden kann. So hat z.B. eine Dll eine Version, die den commit-hash im git enthÃ¤lt. Falls es zu einem Problem bei der Software gibt, kann genau diese Version abgerufen und analysiert werden.
 *tbd: Verweis auf NuGet-Packet*
 
 #### Branching ####
 
-Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
+Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. FÃ¼r Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
 
 
 ### Unittests und Integrationstests ###
 
-Wir führen Unittests meistens aus folgenden Beweggründen durch:
+Wir fÃ¼hren Unittests meistens aus folgenden BeweggrÃ¼nden durch:
 * Spezifikation von Verhalten (z.B. Protokolldefinitionen)
 * Das Festzurren von Verhalten um beim Refaktoring von Code Seiteneffekte zu vermeinden
 
-Das Festzurren der bestehenden Implementierung führt jedoch auch dazu, dass der Code sich nicht mehr leicht verändern lässt, ohne ganz viele Tests anzupassen. 
+Das Festzurren der bestehenden Implementierung fÃ¼hrt jedoch auch dazu, dass der Code sich nicht mehr leicht verÃ¤ndern lÃ¤sst, ohne ganz viele Tests anzupassen. 
 
-Das Problem lässt sich dadurch lösen, dass Methoden immer in zwei Kategorien unterteilt werdne können:
+Das Problem lÃ¤sst sich dadurch lÃ¶sen, dass Methoden immer in zwei Kategorien unterteilt werdne kÃ¶nnen:
 * Methoden, die nur andere Methoden komponieren 
-* Methoden, die nur Logik (If-Blöcke, Schleifen, ...) enthalten, und keine weitere Methoden aufrufen.
+* Methoden, die nur Logik (If-BlÃ¶cke, Schleifen, ...) enthalten, und keine weitere Methoden aufrufen.
 
-Somit sind die Logik-Blöcke immer ganz unten in den Blätter. [Siehe auch Ralf Westphal](http://blog.ralfw.de/2015/04/die-ioda-architektur.html)
+Somit sind die Logik-BlÃ¶cke immer ganz unten in den BlÃ¤tter. [Siehe auch Ralf Westphal](http://blog.ralfw.de/2015/04/die-ioda-architektur.html)
 
 *Dies Logik-Methoden werden mit Unittests zu einem ganz hohem Grade abgedeckt.*
  
-*Die Komponierenden-Methoden müssen nicht unit getestet werden, da hier nur der Compiler getestet wird. Um trotzdem das Verhalten festzuzurren, wird das System durch integrationstest getestet.*
+*Die Komponierenden-Methoden mÃ¼ssen nicht unit getestet werden, da hier nur der Compiler getestet wird. Um trotzdem das Verhalten festzuzurren, wird das System durch integrationstest getestet.*
 
 ### Unittest Style ###
 
 Unittest sollen in Form von Given/When/Then geschrieben werden. [Siehe auch Martin Fownler](https://martinfowler.com/bliki/GivenWhenThen.html) 
 
-tbd für weitere Erklärungen und Beispiele.
+tbd fÃ¼r weitere ErklÃ¤rungen und Beispiele.
 
 ### Commit Messages ###
 
-Commit Messages sollen dem Benutzer eine Geschichte erzählen. Ein Why, What & How. 
-Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Injection in XXX nicht mehr möglich, da der Strings jetzt escapt werden*.
+Commit Messages sollen dem Benutzer eine Geschichte erzÃ¤hlen. Ein Why, What & How. 
+Statt der Nachricht *String Escape in XXX hinzugefÃ¼gt*, schreiben wir *Sql-Injection in XXX nicht mehr mÃ¶glich, da der Strings jetzt escapt werden*.
 
 [Siehe auch Ilker Cetinkayas Vortrag auf der NRWConf.](https://www.google.de/search?q=Commitmessages+ilker&ie=&oe=#q=Commit+Messages+ilker+Cetinkaya)
  
 
 ### Coding-Style ###
 
-Naming Conventions und Coding Styles werden als eine Resharper-Datei zur Verfügung gestellt.
+Naming Conventions und Coding Styles werden als eine Resharper-Datei zur VerfÃ¼gung gestellt.
 
 Siehe: tbd 
  
