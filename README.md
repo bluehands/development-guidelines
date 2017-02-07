@@ -42,8 +42,8 @@ Mit dem Bluehands.Versioning-Package wird die Versionierung automatisch bei jede
 2. Im neuen Fenster links "Package Sources" auswählen
 3. Oben rechts auf das Plus-Symbol (+) klicken
 4. Unten folgendes eingeben:
-    1. Name: `Bluehands`
-    2. Source: `https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json`
+    * Name: `Bluehands`
+    * Source: `https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json`
 5. Auf "Update" und dann "OK" klicken
 
 Danach ganz normal das Bluehands.Versioning-Package installieren. Dabei muss im Nuget-Fenster oben rechts bei "Package Source" entweder "All" oder "Bluehands" ausgewählt sein. Alle weiteren Informationen finden sich dann in Version.README.txt im Projektordner.
