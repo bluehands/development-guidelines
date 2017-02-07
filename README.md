@@ -48,6 +48,13 @@ Mit dem Bluehands.Versioning-Package wird die Versionierung automatisch bei jede
 
 Danach ganz normal das Bluehands.Versioning-Package installieren. Dabei muss im Nuget-Fenster oben rechts bei "Package Source" entweder "All" oder "Bluehands" ausgewählt sein. Alle weiteren Informationen finden sich dann in Version.README.txt im Projektordner.
 
+Zum Integrieren des Nuget-Package in den TFS-Build-Prozess muss der entsprechende Feed in der Build-Definition hinzugefügt werden:
+
+1. *Nuget Installer*-Task zur Build-Definition hinzufügen, falls dieser noch nicht existiert
+2. Im *Nuget Installer*-Task müssen folgende Einstellungen vorgenommen werden:
+    * NuGet arguments: `-Source "https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json;https://api.nuget.org/v3/index.json"`
+    * Advanced > NuGet version: `3.5.0` (oder höher) auswählen
+
 #### Branching ####
 
 Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
