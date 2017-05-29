@@ -87,7 +87,7 @@ tbd für weitere Erklärungen und Beispiele.
 ### Commit Messages ###
 
 Commit Messages sollen dem Benutzer eine Geschichte erzählen. Ein Why, What & How. 
-Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Injection in XXX nicht mehr möglich, da der Strings jetzt escapt werden*.
+Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Injection in XXX nicht mehr möglich, da der String jetzt escapt werden*.
 
 [Siehe auch Ilker Cetinkayas Vortrag auf der NRWConf.](https://www.google.de/search?q=Commitmessages+ilker&ie=&oe=#q=Commit+Messages+ilker+Cetinkaya)
  
@@ -95,19 +95,22 @@ Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Inje
 
 Wir verwenden Scrum als Entwicklungsprozess. D.h. wir haben: 
 
-* ein Backlog mit Userstories die geschätzt sind
-* ein Sprintbacklog mit Tasks die im Planning erstellt wurden oder im laufe der Entwicklung entstehen
+* Ein Backlog mit Userstories die geschätzt sind. 
+* Bei Scrum mit Festpreis steht die Anzahl der Effortpunkte fest und ist transparent kommuniziert.
+* Ein Sprintbacklog mit Tasks die im Planning erstellt wurden. Evtl. kommen noch weitere im Verlauf der Entwicklung hinzu. Keine Handlung ohne Task.
 * Bei mehreren Beteiligten ein Dailyscrum
-* Ein Sprint Demo mit dem Kunden
+* Eine vorbereitete Sprint Demo mit dem Kunden
 * Eine Sprint Retroperpektive
 
 ### Verantwortlichkeiten ###
 
 In jedem Projekt gibt es eine Reihe von Verantwortlichkeiten, die erfüllt seien müssen. Das kann auch in Personalunion geschehen. Im einzelnen sind diese:
 
-* Technische Entwicklungsleitung. Dies beinhaltet, dass das Projekt in Absprache mit dem PO in Time und in Function und mit der kaufmänischen Projektleitung in Budget abgeschlossen wird.
-* Ansprache Kunde. Stellt sicher, dass der Kunde immer mit an Board ist. Er/Sie weiß was gerade entwicklet wird, wann was fertig wird und wie der Status gerade ist.  
-* Kaufmänische Projektleitung. Achtet auf den Scope und das Budget. Hier wird ein kleinteiliges Reporting für alle Beteiligten erstellt. Z.B. ein Burndown/Burnup Chart
+* Technischer Skope. Dies bedeutet, dass das Projekt in Absprache mit dem PO in Zeit und in Funktionalität abgeschlossen wird.
+* Kaufmänischer Skope. Achtet darauf, dass das Projekt in Budget abgeschlossen wird. Hier wird ein kleinteiliges Reporting für alle Beteiligten erstellt. Z.B. ein Burndown/Burnup Chart. 
+* Funktionaler Skope. Pflegt das Backlog.
+* Ansprache Kunde. Stellt sicher, dass der Kunde immer mit an Board ist. Er/Sie weiß was gerade entwicklet wird, wann was fertig wird und wie der Status gerade ist. Koordiniert Termine mit Kunden. Kümmert sich darum, dass die Sprint-Demo vorbereitet ist.
+
  
 ### Coding-Style ###
 
