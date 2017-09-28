@@ -65,9 +65,9 @@ Wir möchten unsere Software (genauer das Artefakt) in gleichbleibender und gute
 * Es gibt eine Continuous Build auf alle Branches  
 * Es gibt eine Release-Definition auf diese Build-Definition
 * Für alle Branches wird in die Umgebung **Continuous Integration** deployed und automatisch getestet
-* Für die branches release\\\* und hotfix\\\* wird in die Umgebung **QS Abnahme** deployed und automatisch und manuell getestet. Es wird ein approval vor dem Deployment angefordert. Nach den Tests wird ein approval zur Freigabe angefordert.   
+* Für die branches release\\\* und hotfix\\\* wird in die Umgebung **QS Abnahme** deployed und automatisch und manuell getestet. Es wird ein approval vor dem Deployment angefordert (damit findet eine synchronisierung auf die Umgebung statt). Nach den Tests wird ein approval zur Freigabe angefordert.   
 * Für die branches release\\\* und hotfix\\\* wird in die Umgebung **Kunde Abnahme** deployed und automatisch und manuell getestet. Es wird ein approval vor dem Deployment angefordert. Nach den Tests wird ein approval zur Freigabe angefordert.   
-* Nach **QS Abnahme** wird der branch automatisch in master zurückgeführt. Für develop wird ein pull request erzeugt.
+* Nach **QS Abnahme** wird der branch automatisch in master zurückgeführt. Für develop wird ein pull request erzeugt. Technisch erzeugen wir hier eine **Pseudo Umgebung**, welche automatisch nach **QS Abnahme** deployed wird. Diese Umgebung hat dann die git-Tasks.
 
 
 ### Unittests und Integrationstests ###
