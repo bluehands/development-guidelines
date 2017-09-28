@@ -16,9 +16,7 @@ Ein Projekt besteht mehr aus nur Quellcode. Um ein Projekt zu strukturieren, ver
 
 Siehe: ".\Project Folder Template\Project Template.zip"
 
-### Application Lifecycle Management (ALM) ###
-
-#### Plattform ####
+### Application Lifecycle Management (ALM) Plattform ###
 
 Als ALM Plattform benutzen wir Visual Studio Team Services (aka TFS online) um unsere Projekte zu verwalten. Als Projekttemplate wird **bluehands Scrum** und als Quellcodeverwaltungssystem **Git** verwendet. 
 
@@ -55,9 +53,21 @@ Zum Integrieren des Nuget-Package in den TFS-Build-Prozess muss der entsprechend
     * NuGet arguments: `-Source "https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json;https://api.nuget.org/v3/index.json"`
     * Advanced > NuGet version: `3.5.0` (oder höher) auswählen
 
-#### Branching ####
+### Branching ###
 
 Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
+
+### Automatisches Deployment & Qualitätssicherung ###
+
+Wir möchten unsere Software (genauer das Artefakt) in gleichbleibender und guter Qualität liefern. Dies stellen wir durch einen hohen automatisierungsgrad bei der Qualitätssicherung mithilfe von VSTS und dem Release Management sicher. Wir verwenden folgende Vorgehensweise:
+
+* Wir haben die GitFlow Branches master, develop, feature\\\*, release\\\* und hotfix\\\*
+* Es gibt eine Continuous Build auf alle Branches  
+* Es gibt eine Release-Definition auf diese Build-Definition
+* Für alle Branches wird in die Umgebung **Continuous Integration** deployed und automatisch getestet
+* Für die branches release\\\* und hotfix\\\* wird in die Umgebung **QS Abnahme** deployed und automatisch und manuell getestet. Es wird ein approval vor dem Deployment angefordert. Nach den Tests wird ein approval zur Freigabe angefordert.   
+* Für die branches release\\\* und hotfix\\\* wird in die Umgebung **Kunde Abnahme** deployed und automatisch und manuell getestet. Es wird ein approval vor dem Deployment angefordert. Nach den Tests wird ein approval zur Freigabe angefordert.   
+* Nach **QS Abnahme** wird der branch automatisch in master zurückgeführt. Für develop wird ein pull request erzeugt.
 
 
 ### Unittests und Integrationstests ###
