@@ -106,7 +106,7 @@ Statt der Nachricht *String Escape in XXX hinzugefügt*, schreiben wir *Sql-Inje
 Wir verwenden Scrum als Entwicklungsprozess. D.h. wir haben: 
 
 * Ein Backlog mit Userstories die geschätzt sind. 
-* Bei Scrum mit Festpreis steht die Anzahl der Effortpunkte fest und ist transparent kommuniziert.
+* Bei Scrum mit Festpreis steht die Anzahl der Storypoints fest und ist transparent kommuniziert.
 * Ein Sprintbacklog mit Tasks die im Planning erstellt wurden. Evtl. kommen noch weitere im Verlauf der Entwicklung hinzu. Keine Handlung ohne Task.
 * Bei mehreren Beteiligten ein Dailyscrum
 * Eine vorbereitete Sprint Demo mit dem Kunden
@@ -116,10 +116,22 @@ Wir verwenden Scrum als Entwicklungsprozess. D.h. wir haben:
 
 In jedem Projekt gibt es eine Reihe von Verantwortlichkeiten, die erfüllt seien müssen. Das kann auch in Personalunion geschehen. Im einzelnen sind diese:
 
-* Technischer Skope. Dies bedeutet, dass das Projekt in Absprache mit dem PO in Zeit und in Funktionalität abgeschlossen wird.
-* Kaufmänischer Skope. Achtet darauf, dass das Projekt in Budget abgeschlossen wird. Hier wird ein kleinteiliges Reporting für alle Beteiligten erstellt. Z.B. ein Burndown/Burnup Chart. 
-* Funktionaler Skope. Pflegt das Backlog.
-* Ansprache Kunde. Stellt sicher, dass der Kunde immer mit an Board ist. Er/Sie weiß was gerade entwicklet wird, wann was fertig wird und wie der Status gerade ist. Koordiniert Termine mit Kunden. Kümmert sich darum, dass die Sprint-Demo vorbereitet ist.
+* Technischer Skope (Der Baumeister). Dies bedeutet, dass das Projekt in Absprache mit dem PO in Zeit und in Funktionalität abgeschlossen wird.
+    * Erstellt Sprint Burndown (PBI) und Release Burnup Chart (Features)   
+    * Kommuniziert Zeit/Funktions-Horizont an den PO und Beteiligten     
+* Kaufmänischer Skope (Der Kaufmann). Achtet darauf, dass das Projekt in Budget abgeschlossen wird. Hier wird ein kleinteiliges Reporting für alle Beteiligten erstellt.
+    * Erstellt ein Budget-Report (X-Prozent von Budget im zusammenhang mit Y-Prozent der Storypoints). 
+    * Kummuniziert an bluehands-Team
+* Funktionaler Skope (Der Dichter). Achtet darauf, dass das Projekt vollständig und verständlich im Backlog beschrieben ist. Pflegt das Backlog
+    * Alle Features haben Storypoints und alle PBI haben Effort-Punkte 
+    * Unterstützt den PO beim Schreiben und Priorisieren
+    * Achtet darauf, dass der Fortschritt im Backlog sichtbar ist. Z.B. der State von Task und PBI sind gesetzt
+    * Achtet darauf, dass die Änderungen im Backlog dokumentiert sind
+* Ansprache Kunde (Der Bote). Stellt sicher, dass der Kunde immer mit an Board ist. Er/Sie weiß was gerade entwicklet wird, wann was fertig wird und wie der Status gerade ist. 
+    * Koordiniert Termine mit Kunden.
+    * Stellt Zugänge für den Kunden zur Verfügung (VSTS Account u.Ä.) 
+    * Kummuniziert die Ansprechpartner
+    * Kümmert sich darum, dass die Sprint-Demo vorbereitet ist.
 
  
 ### Coding-Style ###
