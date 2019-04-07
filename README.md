@@ -18,7 +18,7 @@ Siehe: ".\Project Folder Template\Project Template.zip"
 
 ### Application Lifecycle Management (ALM) Plattform ###
 
-Als ALM Plattform benutzen wir Visual Studio Team Services (aka TFS online) um unsere Projekte zu verwalten. Als Projekttemplate wird **bluehands Scrum** und als Quellcodeverwaltungssystem **Git** verwendet. 
+Als ALM Plattform benutzen wir Azure DevOps (aka TFS online) um unsere Projekte zu verwalten. Als Projekttemplate wird **bluehands Scrum** und als Quellcodeverwaltungssystem **Git** verwendet. 
 
 Im VSTS werden folgende Themen verwaltet:
 * Quellcodeverwaltung
@@ -34,28 +34,20 @@ Jedes Projekt hat ein continues integration und wenn möglich ein continues depl
 
 Jedes Artefakt hat eine Version, die direkt der Quellcodeverwaltung zugeordnet werden kann. So hat z.B. eine Dll eine Version, die den commit-hash im git enthält. Falls es zu einem Problem bei der Software gibt, kann genau diese Version abgerufen und analysiert werden.
 
-Mit dem Bluehands.Versioning-Package wird die Versionierung automatisch bei jedem Build umgesetzt. Dazu muss ein neuer Nuget-Feed in Visual Studio hinzugefügt werden:
-
-1. Tools > NuGet Package Manager > Package Manager Settings
-2. Im neuen Fenster links "Package Sources" auswählen
-3. Oben rechts auf das Plus-Symbol (+) klicken
-4. Unten folgendes eingeben:
-    * Name: `Bluehands`
-    * Source: `https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json`
-5. Auf "Update" und dann "OK" klicken
-
-Danach ganz normal das Bluehands.Versioning-Package installieren. Dabei muss im Nuget-Fenster oben rechts bei "Package Source" entweder "All" oder "Bluehands" ausgewählt sein. Alle weiteren Informationen finden sich dann in Version.README.txt im Projektordner.
+Mit dem Bluehands.Versioning-Package wird die Versionierung automatisch bei jedem Build umgesetzt. Alle weiteren Informationen finden sich dann in Version.README.txt im Projektordner.
 
 Zum Integrieren des Nuget-Package in den TFS-Build-Prozess muss der entsprechende Feed in der Build-Definition hinzugefügt werden:
 
 1. *Nuget Installer*-Task zur Build-Definition hinzufügen, falls dieser noch nicht existiert
 2. Im *Nuget Installer*-Task müssen folgende Einstellungen vorgenommen werden:
-    * NuGet arguments: `-Source "https://bluehands.pkgs.visualstudio.com/_packaging/default/nuget/v3/index.json;https://api.nuget.org/v3/index.json"`
+    * NuGet arguments: `-Source "https://api.nuget.org/v3/index.json"`
     * Advanced > NuGet version: `3.5.0` (oder höher) auswählen
 
 ### Branching ###
 
-Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren.
+Wir verwenden [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/) als Pattern zur Verwaltung von branches. Für Visual Studio 2017 kann man ein [PlugIn](https://marketplace.visualstudio.com/items?itemName=vs-publisher-57624.GitFlowforVisualStudio) installieren. 
+#### Pull Request ####
+Die Branches Develop und Master sind per Branch Policy geschützt. D.h. nur mit Pull Requests und Code Review (Definition of Done, diese Guidlines) kann hier commited werden.
 
 ### Automatisches Deployment & Qualitätssicherung ###
 
@@ -93,6 +85,24 @@ Somit sind die Logik-Blöcke immer ganz unten in den Blätter. [Siehe auch Ralf 
 Unittest sollen in Form von Given/When/Then geschrieben werden. [Siehe auch Martin Fownler](https://martinfowler.com/bliki/GivenWhenThen.html) 
 
 tbd für weitere Erklärungen und Beispiele.
+
+### Security ###
+Wir haben eine hohe Verantwortung gegenüber unsere Anwender*innen und Partner und müssen sicherstellen, dass unsere Software keine Schwachstellen enthält.
+#### Information Protection ####
+* Die Kommunikation über das Netzwerk ist immer verschlüsselt. In Web-Projekten immer HTTPS erforderlich einschalten.
+* Nur mit sicheren Gegenstellen kommunizieren. Das Überprüfen von Zertifikaten darf nur kurzfristig ausgeschaltet werden. Diese Umgehung wird in einer eigenen Compiler-Konstante ummantelt, so dass sie im Release- und Debug-Build nicht wirkt.
+* Keine Geheimnisse (Schlüssel, Kennwörter) im Code. 
+* Keine Ausgabe von Kennwörter, Session-Token im Log. *Vorsicht bei der Ausgabe von ganzen Objkten, diese könnten Geheimnisse enthalten.* Falls ein Tracking von solchen Daten notwendig ist, dann dise Information erst hashen und dann ausgeben.
+* Kennwörter und andere Zugangesdaten in Konfigurationsdateien verschlüsseln. Die Verschlüsselung erfolgt mit Framework-Mitteln (aspnet_regiis, .Net core secret manager tool, Azure KeyVault).
+#### Injection #### 
+Benutzereingaben sind grundsätzlich nicht vertrauenswürdig. Bevor diese verarbeitet werden, müssen diese *entschärft* werden. 
+* Sql-Injection: Keine string konkatenierung auf Benutzereingabe. Immer parametrierte Abfragen benutzen. 
+* Script-Injection: Eingaben in Web-Anwendungen die wiederum ausgegeben werden (Chat, Kommentare, Namen) immer mit Framework-Mitteln escapen.
+#### Fremd-Bibliotheken ####
+Bibliotheken können potenziell Sicherheitslücken aufweisen oder Schadcode beinhalten.
+* Nur Bibliotheken von Publisher mit einer hohen Reputation verwenden (Anzahl Downloads, GitHub Aktivitäten).
+* Die Bibilotheken werden automatisch auf Malware gescannt. Hierzu wird WhiteSource Bolt in Azure DevOps eingebunden. Details [hier](https://bolt.whitesourcesoftware.com/azure/faq/).
+* Bei Client-Software, die von uns ausgeliefert wird, werden alle Pakete in unserem privaten Feed kopiert und von da aus referenziert. 
 
 ### Commit Messages ###
 
